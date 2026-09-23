@@ -17,14 +17,14 @@ from data.mgf_parser import extract_ms_info_from_mgf
 
 # 修饰类型映射表
 MODIFICATION_MAP = {
-    "acetylated": {"name": "Acetylated", "short_name": "ac-", "mass": 42.0105646837, "formula": "C2H2O", "position": "N-term"},
-    "deaminated": {"name": "Deaminated", "short_name": "deam-", "mass": 0.984016, "formula": "H-1N-1O", "position": "N-term"},
-    "methylated": {"name": "Methylated", "short_name": "me-", "mass": 14.01565, "formula": "CH2", "position": "N-term"},
-    "dimethylated": {"name": "Dimethylated", "short_name": "dime-", "mass": 28.0313, "formula": "C2H4", "position": "N-term"},
-    "formylated": {"name": "Formylated", "short_name": "form-", "mass": 27.9949, "formula": "CO", "position": "N-term"},
-    "amided": {"name": "Amided", "short_name": "amide-", "mass": -0.984016, "formula": "HN1O-1", "position": "C-term"},
+    "n_acetylated": {"name": "Acetylated", "short_name": "ac-", "mass": 42.0105646837, "formula": "C2H2O", "position": "N-term"},
+    "n_deaminated": {"name": "Deaminated", "short_name": "deam-", "mass": 0.984016, "formula": "H-1N-1O", "position": "N-term"},
+    "n_methylated": {"name": "Methylated", "short_name": "me-", "mass": 14.01565, "formula": "CH2", "position": "N-term"},
+    "n_dimethylated": {"name": "Dimethylated", "short_name": "dime-", "mass": 28.0313, "formula": "C2H4", "position": "N-term"},
+    "n_formylated": {"name": "Formylated", "short_name": "form-", "mass": 27.9949, "formula": "CO", "position": "N-term"},
+    "c_amided": {"name": "Amided", "short_name": "amide-", "mass": -0.984016, "formula": "HN1O-1", "position": "C-term"},
     "c_methylated": {"name": "Methylated (C-term)", "short_name": "cme-", "mass": 14.01565, "formula": "CH2", "position": "C-term"},
-    "dehydrated": {"name": "Dehydrated", "short_name": "dehyd-", "mass": -18.010565, "formula": "H-2O-1", "position": "C-term"},
+    "c_dehydrated": {"name": "Dehydrated", "short_name": "dehyd-", "mass": -18.010565, "formula": "H-2O-1", "position": "C-term"},
 }
 
 
@@ -57,6 +57,7 @@ def process_single_deepuv_file(
     custom_mod_name: Optional[str] = None,
     custom_mod_mass: Optional[float] = None,
     custom_mod_formula: Optional[str] = None,
+    custom_mod_position: str = "N-term",
     return_matches: bool = True,
     return_reliability: bool = True,
     output_dir: Optional[str] = None,
@@ -128,7 +129,8 @@ def process_single_deepuv_file(
         mod_type=modification,
         custom_mod_name=custom_mod_name,
         custom_mod_mass=custom_mod_mass,
-        custom_mod_formula=custom_mod_formula
+        custom_mod_formula=custom_mod_formula,
+        custom_mod_position=custom_mod_position  # 新增
     )
 
     # 构建蛋白质对象

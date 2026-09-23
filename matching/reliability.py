@@ -96,7 +96,7 @@ def calculate_internal_reliability_score(matches_df, seqLen, epsilon=1e-6):
 
     total_val = total_possible_cleavages
 
-    irs_v7_base = terminal_cleavage_coverage + 0.3 * two_side_internal_ratio * (1 - terminal_cleavage_coverage)
+    irs_v7_base = terminal_cleavage_coverage + 1.0 * two_side_internal_ratio * (1 - terminal_cleavage_coverage)
     # irs_v7_base = np.sqrt(two_side_internal_ratio) * np.exp(
     #     -np.square(1 - terminal_cleavage_coverage)
     #     / (two_side_internal_ratio + epsilon)

@@ -1,0 +1,18 @@
+{
+  "terminal_fragment_count": 372,
+  "internal_fragment_count": 149,
+  "terminal_cleavage_count": 141,
+  "internal_cleavage_count": 135,
+  "total_cleavage_count": 199,
+  "terminal_cleavage_coverage": 0.5465116279069767,
+  "internal_cleavage_coverage": 0.5232558139534884,
+  "total_cleavage_coverage": 0.7713178294573644,
+  "one_side_supported_internal": 75,
+  "two_side_supported_internal": 51,
+  "unsupported_internal": 23,
+  "one_side_internal_ratio": 0.5033557046979866,
+  "two_side_internal_ratio": 0.3422818791946309,
+  "unsupported_internal_ratio": 0.15436241610738255,
+  "IRS": 181.04697986577182,
+  "dataset": "10uMCA25+UVPDLPT1,5mJ1pFullP_ms2"
+}

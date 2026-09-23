@@ -13,7 +13,7 @@ import argparse
 import torch
 import pandas as pd
 from pathlib import Path
-
+import csv
 # Add project root directory to path (if running directly)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -66,8 +66,8 @@ Example:
         '-mod', '--modification',
         type=str,
         default=None,
-        choices=['acetylated', 'deaminated', 'methylated', 'dimethylated',
-                 'formylated', 'amided', 'c_methylated', 'dehydrated'],
+        choices=['n_acetylated', 'n_deaminated', 'n_methylated', 'n_dimethylated',
+                 'n_formylated', 'c_amided', 'c_methylated', 'c_dehydrated'],
         help='Modification type (Default: None)'
     )
 
@@ -143,7 +143,10 @@ Example:
         action='store_true',
         help='Show detailed processing logs'
     )
-
+    parser.add_argument('--custom_mod_name', type=str, default=None)
+    parser.add_argument('--custom_mod_mass', type=float, default=None)
+    parser.add_argument('--custom_mod_formula', type=str, default=None)
+    parser.add_argument('--custom_mod_position', type=str, default='N-term', choices=['N-term', 'C-term'])
     return parser.parse_args()
 
 
@@ -252,6 +255,10 @@ def main_with_args(args):
             msalign_path=args.msalign,
             ppm=getattr(args, 'ppm', 5),
             modification=getattr(args, 'modification', None),
+            custom_mod_name=getattr(args, 'custom_mod_name', None),
+            custom_mod_mass=getattr(args, 'custom_mod_mass', None),
+            custom_mod_formula=getattr(args, 'custom_mod_formula', None),
+            custom_mod_position=getattr(args, 'custom_mod_position', 'N-term'),
             output_dir=str(plot_dir),
             plot_maps=not getattr(args, 'no_plot_maps', False),
             plot_abundance=not getattr(args, 'no_plot_abundance', False),
@@ -261,7 +268,7 @@ def main_with_args(args):
         # Save matching results
         if matches_df is not None and getattr(args, 'save_csv', False):
             matches_path = output_dir / 'matches.csv'
-            matches_df.to_csv(matches_path, index=False)
+            matches_df.to_csv(matches_path, index=False, quoting=csv.QUOTE_ALL)
             print(f"✓ Matching results saved: {matches_path}")
 
         # Save reliability score
@@ -331,10 +338,10 @@ def interactive_mode():
     js_path = input("spectrum0.js file path: ").strip()
     sequence = input("Protein sequence: ").strip()
     modification = input(
-        "Modification type (Leave blank to skip, optional: acetylated/deaminated/methylated/dimethylated/formylated/amided/c_methylated/dehydrated): ").strip() or None
+        "Modification type (Leave blank to skip, optional: n_acetylated/n_deaminated/n_methylated/n_dimethylated/n_formylated/c_amided/c_methylated/c_dehydrated): ").strip() or None
 
-    if modification and modification not in ['acetylated', 'deaminated', 'methylated', 'dimethylated',
-                                             'formylated', 'amided', 'c_methylated', 'dehydrated']:
+    if modification and modification not in ['n_acetylated', 'n_deaminated', 'n_methylated', 'n_dimethylated',
+                                             'n_formylated', 'c_amided', 'c_methylated', 'c_dehydrated']:
         print(f"⚠ Unknown modification type: {modification}, falling back to None")
         modification = None
 
@@ -474,7 +481,7 @@ def batch_process(
             # Save matching results
             if save_csv and matches_df is not None:
                 matches_path = output_dir_path / f'matches_{file_suffix}.csv'
-                matches_df.to_csv(matches_path, index=False)
+                matches_df.to_csv(matches_path, index=False, quoting=csv.QUOTE_ALL)
                 print(f"  ✓ Fragment matches saved: {matches_path}")
 
             if save_csv and reliability is not None:

@@ -103,8 +103,8 @@ class CTermMod(Mod):
         super().check_input()
         # 检查终端修饰的格式是否正确
         # C端修饰需要检查是否-开头
-        assert self.name.startswith("-"), "N terminal modification name must start with '-'"
-        assert self.name.islower(), "N terminal modification name must be lower alphabet"
+        #assert self.name.startswith("-"), "C terminal modification name must start with '-'"
+        assert self.name.islower(), "C terminal modification name must be lower alphabet"
 
 
 # In[60]:

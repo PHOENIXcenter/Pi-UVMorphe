@@ -177,8 +177,15 @@ def process_single_file(
         else:
             image_files = [f"envelope_{i}.png" for i in range(len(df))]
 
+        if len(image_files) == len(df) + 1:
+            print(f"  ⚠️  Image count ({len(image_files)}) is one more than dataframe rows ({len(df)}). Removing the first image.")
+            image_files = image_files[1:]  # 删除第一张图片
+            print(f"  ✓ Image count after removal: {len(image_files)}")
+
         if len(image_files) != len(df):
             raise ValueError(f"Number of images ({len(image_files)}) != Number of rows in dataframe ({len(df)})")
+
+
 
         df_copy = df.copy()
         required_cols = ['Mass', 'Intensity', 'Charge', 'mz', 'label']
@@ -190,6 +197,8 @@ def process_single_file(
             image_paths = [os.path.join(output_envelope_dir, img) for img in image_files]
         else:
             image_paths = image_files
+
+
 
         df_copy['image_path'] = image_paths
 

@@ -77,7 +77,8 @@ def generate_envelope_dict_vit(data, output_dir='envelope_plots_vit',
         }
 
         if save_images:
-            img_path = output_path / f'envelope_{env_id:03d}.png'
+            #img_path = output_path / f'envelope_{env_id:03d}.png'
+            img_path = output_path / f'envelope_{int(env_id):03d}.png'
             Image.fromarray(img_array).save(img_path)
             env_entry['image_path'] = str(img_path.absolute())
 
