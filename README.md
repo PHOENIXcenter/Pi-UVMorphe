@@ -1,6 +1,6 @@
 # Pi-UVMorphe
 
-Pi-UVMorphe (UltraViolet-specific Multimodal Optimized Reliability Prediction for Hybrid Envelope fragments) is a dual-branch deep learning framework designed for accurate and reliable fragment ion identification in UVPD top-down proteomics. Developer is Bo Yao from State Key Laboratory of Medical Proteomics, National Center for Protein Sciences (Beijing).
+Pi-UVMorphe (UltraViolet-specific Multimodal Optimized Reliability Prediction for Hybrid Envelope fragments) is a dual-branch deep learning framework designed for accurate and reliable fragment ion identification in UVPD top-down proteomics. Developer is Bo Yao from State Key Laboratory of Medical Proteomics, Beijing Proteome Research Center, National Center for Protein Sciences (Beijing), Beijing Institute of Lifeomics, Beijing 102206, China.
 
 # Overview of Pi-UVMorphe
 
@@ -72,7 +72,7 @@ To utilize the model, you need to prepare the following inputs:
 2. Biological Sequence & Metadata:
     Protein Sequence (-s / --sequence)
     Format: Plain text string (Capitalized single-letter amino acid codes, e.g., "SHHWGYG...")
-    Description: The target amino acid sequence of the protein being analyzed. The algorithm uses this sequence as the template to generate theoretical internal and terminal fragments for matching.
+    Description: The target FASTA-like amino acid sequence of the protein being analyzed. The algorithm uses this sequence as the template to generate theoretical internal and terminal fragments for matching.
     
     Modification Type (-mod / --modification)
     Format: String selection (Optional)
@@ -86,7 +86,7 @@ To utilize the model, you need to prepare the following inputs:
     
     Model Weights (--model)
     Format: .pth (Default: best_model.pth)
-    Description: The pre-trained PyTorch model checkpoint containing the optimized weights of the Pi-UVMorphe neural network architecture.
+    Description: The pre-trained PyTorch model checkpoint containing the optimized weights of the DeepUVModel neural network architecture.
     
     PPM Tolerance (--ppm)
     Format: Integer (Default: 5)
@@ -98,7 +98,7 @@ To utilize the model, you need to prepare the following inputs:
 
 You can launch the complete pipeline with a single command. To test your installation with the provided example dataset, execute:
     
-    python run.py -m data/example_data/10uMCA25+UVPDLPT1,5mJ1pFullP_ms2.msalign -j data/example_data/10uMCA25+UVPDLPT1,5mJ1pFullP_html/topfd/ms2_json/spectrum0.js -s "SHHWGYGKHNGPEHWHKDFPIANGERQSPVDIDTKAVVQDPALKPLALVYGEATSRRMVNNGHSFNVEYDDSQDKAVLKDGPLTGTYRLVQFHFHWGSSDDQGSEHTVDRKKYAAELHLVHWNTKYGDFGTAAQQPDGLAVVGVFLKVGDANPALQKVLDALDSIKTKGKSTDFPNFDPGSLLPNVLDYWTYPGSLTTPPLLESVTWIVLKEPISVSSQQMLKFRTLNFNAEGEPELLMLANWRPAQPLKNRQVRGFPK" -mod acetylated
+    python run.py -m data/example_data/10uMCA25+UVPDLPT1,5mJ1pFullP_ms2.msalign -j data/example_data/10uMCA25+UVPDLPT1,5mJ1pFullP_html/topfd/ms2_json/spectrum0.js -s "SHHWGYGKHNGPEHWHKDFPIANGERQSPVDIDTKAVVQDPALKPLALVYGEATSRRMVNNGHSFNVEYDDSQDKAVLKDGPLTGTYRLVQFHFHWGSSDDQGSEHTVDRKKYAAELHLVHWNTKYGDFGTAAQQPDGLAVVGVFLKVGDANPALQKVLDALDSIKTKGKSTDFPNFDPGSLLPNVLDYWTYPGSLTTPPLLESVTWIVLKEPISVSSQQMLKFRTLNFNAEGEPELLMLANWRPAQPLKNRQVRGFPK" -mod n_acetylated
 
 ## Option B: Run Pi-UVMorphe GUI
 
@@ -110,7 +110,7 @@ If you prefer a visual, point-and-click environment to upload files, configure p
 <img width="7019" height="4828" alt="932469b91c1b082f27d8f6318fce2fd9" src="https://github.com/Simon-BoY/Pi-UVMorphe/blob/main/resources/GUI.png" />
 </div>
 
-__The graphical user interface (GUI) of the π-UVMorphe__.  (a) Analysis settings panel. Users can input .msalign and spectrum0.js files, protein sequences, and set modifications and PPM tolerance. Real-time processing logs are displayed below. (b) Results overview panel. Displays a global statistics summary (e.g., matches, coverage) and a detailed table of matched fragments, including fragment types, theoretical/observed masses, intensities, charges, and m/z values.
+__The graphical user interface (GUI) of the π-UVMorphe GUI__.  (a) Analysis settings panel. Users can input .msalign and spectrum0.js files, protein sequences, and set modifications and PPM tolerance. Real-time processing logs are displayed below. (b) Results overview panel. Displays a global statistics summary (e.g., matches, coverage) and a detailed table of matched fragments, including fragment types, theoretical/observed masses, intensities, charges, and m/z values.
 
 ## Contact
 
