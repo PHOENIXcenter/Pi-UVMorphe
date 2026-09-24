@@ -8,7 +8,7 @@ import copy
 import os
 import time
 from tqdm import tqdm
-from torch_geometric.data import Data
+# from torch_geometric.data import Data
 from collections import defaultdict
 from sklearn.preprocessing import StandardScaler
 from torch.utils.data import DataLoader, Dataset
@@ -16,7 +16,7 @@ from torch.cuda.amp import GradScaler, autocast
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
-import seaborn as sns
+# import seaborn as sns
 import os
 import re
 from pathlib import Path
