@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Main Window - Pi-UVMorphe GUI Application
+Main Window - pi-UVMorphe GUI Application
 """
 
 import os
@@ -21,9 +21,9 @@ from .worker_thread import WorkerThread
 
 
 class PiMorpheMainWindow(QMainWindow):
-    """Pi-UVMorphe Main Window"""
+    """pi-UVMorphe Main Window"""
 
-    APP_NAME = "Pi-UVMorphe"
+    APP_NAME = "pi-UVMorphe"
     APP_VERSION = "1.0.0"
     APP_COLOR = "#6C5CE7"
 
@@ -408,7 +408,7 @@ class PiMorpheMainWindow(QMainWindow):
                 <p><b>License:</b> MIT License</p>
                 <br>
                 <p style="color: #95a5a6; font-size: 11px;">
-                    © 2026 Pi-UVMorphe. All rights reserved.
+                    © 2026 pi-UVMorphe. All rights reserved.
                 </p>
             </div>
         """)
@@ -616,7 +616,7 @@ class PiMorpheMainWindow(QMainWindow):
             'app': self.APP_NAME,
             'msalign': args.msalign,
             'js': args.js,
-            'sequence': args.sequence[:100] + "..." if len(args.sequence) > 100 else args.sequence,
+            'sequence': args.sequence,
             'modification': args.modification,
             'output': args.output,
             'ppm': args.ppm,
