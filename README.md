@@ -76,7 +76,7 @@ To utilize the model, you need to prepare the following inputs:
     
     Modification Type (-mod / --modification)
     Format: String selection (Optional)
-    Allowed Values: acetylated, deaminated, methylated, dimethylated, formylated, amided, c_methylated, dehydrated.
+    Allowed Values: n_acetylated, n_deaminated, n_methylated, n_dimethylated, n_formylated, c_amided, c_methylated, c_dehydrated.
     Description: Specifies the post-translational modification (PTM) to be considered during the fragment matching process, ensuring precise mass shift calculations.
 
 3. Model Weights & Configuration:
